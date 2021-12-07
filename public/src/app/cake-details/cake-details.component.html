@@ -1,0 +1,13 @@
+<div>
+<h1>Baked by {{singleCakes.baker}}</h1>
+    <div>
+        <div >
+
+            Average rating {{avgRates}}
+        </div>
+        <div *ngFor= "let comments of singleCakes.comment">
+        {{comments}}
+        </div>
+    </div>
+
+</div>

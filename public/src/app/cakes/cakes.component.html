@@ -1,0 +1,78 @@
+<div>
+
+    <div>
+        <h3>Submit a cake to be rated</h3>
+        <fieldset>
+            <form (submit) = "createCake($event)">
+                <div>
+                    <label for="baker">
+                        Baker`s name:
+                    </label>
+                    <input type="text" id="baker" name="baker" [(ngModel)]="newCakes.baker" >
+                </div>
+                <div>
+                    <label for="image">
+                        image
+                    </label>
+                    <input  type="text" id="image" name="image" [(ngModel)]="newCakes.image" >
+                </div>
+                <button type="submit">Submit</button>
+
+            </form>
+        </fieldset>
+    </div>
+
+    <!-- Esta parte es para comprobar que el formeste editando nuestro componente -->
+
+        {{newCakes.image }} {{newCakes.baker}}
+    <!-- finaliza two-way binding-->
+
+
+
+
+    <h3>Look all the cakes!</h3>
+    <div *ngFor = "let list of allCakes">
+        <fieldset>
+                <div>
+              
+                <img (click)="getACake(list._id)" src="{{list.image}}" alt="cake image" width="500" height="auto">
+            
+                </div>
+                <div>
+                    <form (submit) = "updateCakes([list._id],$event)">
+                        <div>
+                            <select type="text" id="rate" name="singleCakes.rate" >
+                                <option value="5">5 Stars</option>
+                                <option value="4">4 Stars</option>
+                                <option value="3">3 Stars</option>
+                                <option value="2">2 Stars</option>
+                                <option value="1">1 Stars</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="textarea" id="comment" name="comment" >
+                        </div>
+                
+                        <button type="submit">Rate!</button>
+                    
+                    </form>
+                </div>
+        
+        </fieldset>
+    </div>
+
+</div>
+
+<app-cake-details   *ngIf="singleCakes._id" [singleCakes]="singleCakes" [avgRates]="avgRates"></app-cake-details>
+
+<!-- <div  *ngIf="singleCakes._id"  >
+    <h1>Baked by {{singleCakes.baker}}</h1>
+    <div>
+        <div>
+            Average rating {{singleCakes.rate}}
+        </div>
+        <div>
+        {{singleCakes.comment}}
+        </div>
+    </div>
+</div> -->
